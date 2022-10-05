@@ -1,0 +1,8 @@
+#1° passo 
+python -m venv .
+
+2° passo
+Scripts\activate
+
+3° passo 
+Flask --app appPastelaria.py routes
