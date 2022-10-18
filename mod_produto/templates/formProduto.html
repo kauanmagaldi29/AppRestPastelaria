@@ -1,38 +1,82 @@
-{% extends "base.html" %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
+<script
+  src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"
+  type="text/javascript"
+></script>
+<script
+  src="https://plentz.github.io/jquery-maskmoney/javascripts/jquery.maskMoney.min.js"
+  type="text/javascript"
+></script>
 
-{% block title %}Produto{% endblock %}
+{% extends "base.html" %} {% block title %}Produto{% endblock %} {% block
+content %}
 
-{% block content %}
-<form name="funcionario" id="funcionario" action="" method="POST">
-    <h1>Produto</h1>
-    <input type="text" name="id" id="id" value="" placeholder="Código" readonly>
-    <label for="id">Código</label>
-    <br>
-    <input type="text" name="nome" id="nome" value="" placeholder="Nome Funcionário" maxlength="100" autofocus required>
-    <label for="nome">Nome Produto</label>
-    <br>
-    <input type="text" name="matricula" id="matricula" value="" placeholder="Matrícula" maxlength="15" required>
-    <label for="matricula">Matrícula</label>
-    <br>
-    <input type="text" name="cpf" id="cpf" value="" placeholder="CPF" maxlength="15" required>
-    <label for="cpf">CPF</label>
-    <br>
-    <input type="tel" name="telefone" id="telefone" value="" placeholder="Telefone" maxlength="15" required>
-    <label for="telefone" class="form-label">Telefone</label>
-    <br>
-    <select name="grupo" id="grupo" aria-label="Grupo">
-        <option value="0">Atendente</option>
-        <option value="1">Caixa</option>
-        <option value="2">Adm</option>
-    </select>
-    <label for="grupo">Grupo</label>
-    <br>
-    <input type="password" name="senha" id="senha" value="Bolinhas" placeholder="Senha" required>
-    <label for="senha">Senha</label>
-    <br>
-    <input type="password" name="resenha" id="resenha" value="Bolinhas" placeholder="Senha" required>
-    <label for="resenha">reSenha</label>
-    <br>
-    <button type='submit' name='salvaUsuarioDB' id='salvaUsuarioDB'><i class='fas fa-save'></i> Salvar</button>
+<script>
+  jQuery(function () {
+    jQuery("#valor").maskMoney({
+      prefix: "R$ ",
+      thousands: ".",
+      decimal: ",",
+    });
+  });
+</script>
+<form
+  class="row g-3 bg-dark mx-5 text-white p-3 mt-5 rounded shadow-lg"
+  name="produto"
+  id="produto"
+  action=""
+  method="POST"
+>
+  <h1><i class="fa fa-user-plus"></i> Cadastrar novo produto</h1>
+  <hr />
+  <div class="col-md-6">
+    <label for="nome" class="form-label">Nome do produto</label>
+    <input
+      type="text"
+      class="form-control bg-dark text-white"
+      placeholder="Nome do cliente"
+      id="nome"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="descricao" class="form-label">Descrição</label>
+    <input
+      type="text"
+      class="form-control bg-dark text-white"
+      placeholder="Descrição do produto"
+      id="descricao"
+    />
+  </div>
+  <div class="col-md-6">
+    <label for="foto" class="form-label">Foto</label>
+    <input
+      type="file"
+      class="form-control bg-dark text-white"
+      id="foto"
+      accept="image/*"
+    />
+  </div>
+  <div class="col-md-6"></div>
+  <div class="col-md-6">
+    <label for="valor" class="form-label">Valor</label>
+    <input
+      type="text"
+      class="form-control bg-dark text-white"
+      placeholder="4,00"
+      id="valor"
+    />
+  </div>
+
+  <div class="col-12 d-flex flex-row-reverse">
+    <button
+      type="submit"
+      class="btn btn-success"
+      name="salvaUsuarioDB"
+      id="salvaUsuarioDB"
+    >
+      <i class="fas fa-save"></i> Cadastrar
+    </button>
+  </div>
 </form>
 {% endblock %}
