@@ -1,20 +1,21 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, render_template, request
+import requests
 
-bp_cliente = Blueprint('cliente', __name__, url_prefix="/cliente", template_folder='templates')
+bp_cliente = Blueprint(
+    'cliente', __name__, url_prefix="/cliente", template_folder='templates')
 
-''' rotas dos formulários '''
+''' endereços do endpoint '''
+urlApiCliente = "http://localhost:8000/cliente/"
+urlApiCliente = "http://localhost:8000/cliente/%s"
+headers = {'x-token': 'abcBolinhasToken', 'x-key': 'abcBolinhasKey'}
+
+''' rotas '''
 @bp_cliente.route('/', methods=['GET', 'POST'])
 def formListaCliente():
-    return render_template('formListaCliente.html'), 200
+    response = requests.get(urlApiCliente, headers=headers)
+    result = response.json()
+    return render_template('formListaCliente.html', result=result)
 
-@bp_cliente.route('/form-cliente', methods=['GET', 'POST'])
-def formCliente():
-    return render_template('formCliente.html'), 200
-
-'''
-Rota antiga de app...
-@app.route('/funcionario/')
-def formListaFuncionario():
-    # return "<h1>Rota da página de Funcionários da nossa WEB APP</h1>", 200
-    return render_template('formListaFuncionario.html'), 200
-'''
+@bp_cliente.route('/form-Cliente/', methods=['POST'])
+def formCliente(): 
+    return render_template('formCliente.html')  
