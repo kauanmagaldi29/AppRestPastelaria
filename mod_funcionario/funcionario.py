@@ -17,5 +17,5 @@ def formListaFuncionario():
     return render_template('formListaFuncionario.html', result=result)
 
 @bp_funcionario.route('/form-funcionario/', methods=['POST'])
-def formFuncionario():
+def formFuncionario(): 
     return render_template('formFuncionario.html')  
